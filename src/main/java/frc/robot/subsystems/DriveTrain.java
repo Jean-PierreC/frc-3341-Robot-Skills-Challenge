@@ -44,7 +44,17 @@ public class DriveTrain extends SubsystemBase {
     return instance;
   }
 
-  public void tankDrive(double lPower, double rPower){
+
+  public void tankDrive(double lPower, double rPower) {
+
+    //Minimizing error from small inputs
+    if (lPower < 0.05 && lPower > -0.05) {
+      lPower = 0;
+    }
+    if (rPower < 0.05 && rPower > -0.05) {
+      rPower = 0;
+    }
+
     left.set(ControlMode.PercentOutput, lPower);
     right.set(ControlMode.PercentOutput, rPower);
   }
